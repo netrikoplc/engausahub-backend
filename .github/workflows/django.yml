@@ -28,12 +28,6 @@ jobs:
           pipenv install
 
       - name: Create migrations
-        run: pipenv run python manage.py makemigrations
-
-      - name: Apply migrations
-        run: pipenv run python manage.py migrate
-
-      - name: Run Tests
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: ${{ secrets.DEBUG }}
@@ -55,6 +49,11 @@ jobs:
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_OAUTH_CALLBACK_URL: ${{ secrets.GOOGLE_OAUTH_CALLBACK_URL }}
           ACCOUNT_EMAIL_VERIFICATION: ${{ secrets.ACCOUNT_EMAIL_VERIFICATION }}
+        run: pipenv run python manage.py makemigrations
 
+      - name: Apply migrations
+        run: pipenv run python manage.py migrate
+
+      - name: Run Tests
         run: |
           pipenv run coverage run manage.py test
