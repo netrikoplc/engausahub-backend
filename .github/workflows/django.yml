@@ -22,7 +22,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
         run: |
-          python -m pip install pipenv
+          pip install pipenv
           pipenv install
       - name: Run Tests
         env:
@@ -48,4 +48,4 @@ jobs:
           ACCOUNT_EMAIL_VERIFICATION: ${{ secrets.ACCOUNT_EMAIL_VERIFICATION }}
 
         run: |
-          coverage run manage.py test
+          pipenv run coverage run manage.py test
