@@ -21,6 +21,9 @@ urlpatterns = [
     # local apps
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
+    path("", include("courses.urls")),
+    path("", include("students.urls")),
+    path("", include("transactions.urls"), name="transactions"),
     # third-party apps
     path("__reload__/", include("django_browser_reload.urls")),
 ]

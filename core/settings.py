@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     # local apps
     "accounts.apps.AccountsConfig",
+    "courses.apps.CoursesConfig",
+    "students.apps.StudentsConfig",
+    "transactions.apps.TransactionsConfig",
     # third-party apps
     "rest_framework",
     "rest_framework.authtoken",
@@ -64,14 +67,17 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.twitter",
     "dj_rest_auth.registration",
+    # "storages",
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -139,9 +145,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/staticfiles/"
 
-STATIC_ROOT = "static/"
+MEDIA_URL = "/engausahub/"
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "engausahub")
+
+UPLOAD_ROOT = os.path.join(BASE_DIR, "engausahub", "uploads")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -232,12 +246,11 @@ SIMPLE_JWT = {
 # DJ REST AUTH SETTINGS
 REST_AUTH = {
     "JWT_AUTH_COOKIE": "engausahub-token",
-    "JWT_AUTH_REFRESH_COOKIE": "engausahub-refresh",
     "USE_JWT": True,
     "JWT_AUTH_HTTPONLY": True,
     "JWT_AUTH_SAMESITE": None,
     "PASSWORD_RESET_USE_SITES_DOMAIN": True,
-    "JWT_AUTH_COOKIE_USE_CSRF": True,
+    "JWT_AUTH_COOKIE_USE_CSRF": False,
     "JWT_AUTH_SECURE": DEBUG,
     "JWT_AUTH_COOKIE_ENFORCE_CSRF_ON_UNAUTHENTICATED": False,
     # serializers
@@ -257,3 +270,12 @@ CSRF_TRUSTED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
 # PHONE NUMBER SETTINGS
 PHONENUMBER_DB_FORMAT = "INTERNATIONAL"
 PHONENUMBER_DEFAULT_REGION = "NG"
+
+# CLOUDINARY SETTINGS
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": env.str("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": env.str("CLOUDINARY_API_KEY"),
+    "API_SECRET": env.str("CLOUDINARY_API_SECRET"),
+}
+
+PAYSTACK_SECRET_KEY = env.str("PAYSTACK_SECRET_KEY")
