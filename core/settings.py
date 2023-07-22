@@ -52,12 +52,16 @@ INSTALLED_APPS = [
     "courses.apps.CoursesConfig",
     "students.apps.StudentsConfig",
     "transactions.apps.TransactionsConfig",
+    "blog.apps.BlogConfig",
     # third-party apps
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
     "phonenumber_field",
+    "ckeditor",
+    "ckeditor_uploader",
     "django_browser_reload",
+    "taggit",
     "dj_rest_auth",
     "allauth",
     "allauth.account",
@@ -247,7 +251,7 @@ SIMPLE_JWT = {
 REST_AUTH = {
     "JWT_AUTH_COOKIE": "engausahub-token",
     "USE_JWT": True,
-    "JWT_AUTH_HTTPONLY": False,
+    "JWT_AUTH_HTTPONLY": True,
     "JWT_AUTH_SAMESITE": None,
     "PASSWORD_RESET_USE_SITES_DOMAIN": True,
     "JWT_AUTH_COOKIE_USE_CSRF": False,
@@ -279,3 +283,31 @@ CLOUDINARY_STORAGE = {
 }
 
 PAYSTACK_SECRET_KEY = env.str("PAYSTACK_SECRET_KEY")
+
+
+import uuid
+
+
+def get_filename(filename):
+    name, ext = filename.split(".")
+
+    return f"{name}-{uuid.uuid4()[5]}.{ext}"
+
+
+# ckeditor settings
+CKEDITOR_UPLOAD_PATH = "uploads/ckeditor/"
+
+CKEDITOR_FILENAME_GENERATOR = "get_filename"
+
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+
+# CKEDITOR_CONFIGS = {
+#     "default": {
+#         "toolbar": [
+#             ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "CodeSnippet"],
+#             ["NumberedList", "BulletedList", "Outdent", "Indent"],
+#             ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
+#             ["Link", "Unlink", "Anchor"],
+#         ],
+#     }
+# }

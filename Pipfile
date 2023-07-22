@@ -18,6 +18,8 @@ django-resized = "*"
 pillow = "*"
 django-cloudinary-storage = "*"
 paystackapi = "2.1.0"
+django-taggit = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

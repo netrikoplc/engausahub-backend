@@ -20,17 +20,7 @@ def make_enrollment_image_file_path(instance, filename):
 
 
 class Course(models.Model):
-    COURSES = (
-        (
-            "Building Installation Skills",
-            "Building Installation Skills",
-        ),
-        (
-            "Catch Them Young",
-            "Catch Them Young",
-        ),
-    )
-    title = models.CharField(choices=COURSES, max_length=150, blank=False, null=False)
+    title = models.CharField(max_length=150, blank=False, null=False, unique=True)
     price = models.IntegerField(blank=False, null=False)
     duration = models.IntegerField(blank=False, null=False)
     slug = models.SlugField(max_length=150, blank=True, null=True)
