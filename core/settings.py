@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "students.apps.StudentsConfig",
     "transactions.apps.TransactionsConfig",
     "blog.apps.BlogConfig",
+    "contacts.apps.ContactsConfig",
     # third-party apps
     "rest_framework",
     "rest_framework.authtoken",
