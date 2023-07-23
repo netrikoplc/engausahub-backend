@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "transactions.apps.TransactionsConfig",
     "blog.apps.BlogConfig",
     "contacts.apps.ContactsConfig",
+    "info.apps.InfoConfig",
     # third-party apps
     "rest_framework",
     "rest_framework.authtoken",

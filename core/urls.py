@@ -26,6 +26,7 @@ urlpatterns = [
     path("", include("transactions.urls"), name="transactions"),
     path("", include("blog.urls"), name="blog"),
     path("", include("contacts.urls"), name="contacts"),
+    path("", include("info.urls"), name="info"),
     # third-party apps
     path("__reload__/", include("django_browser_reload.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
