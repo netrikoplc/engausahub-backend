@@ -6,7 +6,7 @@ import os
 def make_testimonial_image_file_path(instance, filename):
     """Generate file path for new testimonial image"""
     ext = filename.split(".")[-1]
-    filename = f"{instance.user.get_full_name()}.{ext}"
+    filename = f"{instance.name}.{ext}"
     return os.path.join("uploads/testimonial/", filename)
 
 
