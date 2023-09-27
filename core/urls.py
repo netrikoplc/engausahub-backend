@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # local apps
@@ -27,6 +28,11 @@ urlpatterns = [
     path("", include("blog.urls"), name="blog"),
     path("", include("contacts.urls"), name="contacts"),
     path("", include("info.urls"), name="info"),
+    path(
+        "auth/password-reset/new/<uid>/<token>/",
+        TemplateView.as_view(template_name="password_reset_confirm.html"),
+        name="password_reset_confirm",
+    ),
     # third-party apps
     path("__reload__/", include("django_browser_reload.urls")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
