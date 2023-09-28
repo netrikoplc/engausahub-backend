@@ -22,7 +22,6 @@ django-taggit = "*"
 django-ckeditor = "*"
 psycopg2-binary = "==2.9.5"
 gunicorn = "*"
-whitenoise = "*"
 
 [dev-packages]
 
