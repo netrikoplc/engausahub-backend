@@ -20,6 +20,8 @@ django-cloudinary-storage = "*"
 paystackapi = "2.1.0"
 django-taggit = "*"
 django-ckeditor = "*"
+psycopg2-binary = "==2.9.5"
+gunicorn = "*"
 
 [dev-packages]
 

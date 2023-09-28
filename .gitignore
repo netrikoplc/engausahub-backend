@@ -121,3 +121,5 @@ accounts/migrations/**
 !**/migrations
 !**/migrations/__init__.py
 
+!railway.json
+
