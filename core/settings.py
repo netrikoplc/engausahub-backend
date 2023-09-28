@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "cloudinary_storage",
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # local apps
@@ -75,7 +76,6 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.twitter",
     "dj_rest_auth.registration",
     # "storages",
-    "cloudinary_storage",
     "cloudinary",
 ]
 
@@ -153,13 +153,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "/staticfiles/"
-
-MEDIA_URL = "/engausahub/"
-
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
+STATIC_URL = "/staticfiles/"
+
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+
+MEDIA_URL = "/engausahub/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "engausahub")
 
