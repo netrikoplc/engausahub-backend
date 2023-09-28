@@ -13,15 +13,15 @@ def make_testimonial_image_file_path(instance, filename):
 class Testimonials(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
     job_title = models.CharField(max_length=50, blank=False, null=False)
-    # image = ResizedImageField(
-    #     upload_to=make_testimonial_image_file_path,
-    #     size=[400, 400],
-    #     quality=-1,
-    #     scale=0.5,
-    #     crop=["middle", "center"],
-    #     null=True,
-    #     blank=True,
-    # )
+    image = ResizedImageField(
+        upload_to=make_testimonial_image_file_path,
+        size=[400, 400],
+        quality=-1,
+        scale=0.5,
+        crop=["middle", "center"],
+        null=True,
+        blank=True,
+    )
     image = models.URLField(blank=True, null=True)
     testimonial = models.TextField()
 
