@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import Course, Enrollment
+from .models import Course, Enrollment, Graduate
 from students.models import Student
+from datetime import datetime
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -90,3 +91,32 @@ class EnrollmentPostSerializer(serializers.Serializer):
             enrollment.save()
 
             return self.validated_data
+
+
+class GraduateGetSerializer(serializers.ModelSerializer):
+    course = serializers.SerializerMethodField()
+    graduation_date = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Graduate
+        fields = ["names", "registration_number", "course", "graduation_date"]
+
+    def get_course(self, obj):
+        course = obj.registration_number.split("/")[2]
+
+        if course == "BIS":
+            return "Building Installation Skills"
+        elif course == "ADB":
+            return "Advanced Building Installation Skills"
+        elif course == "CTY":
+            return "Catch Them Young"
+        elif course == "DLS":
+            return "Digital Literacy Skill Up"
+        elif course == "SPR":
+            return "Smartphone Repairs"
+        return "Contact us to verify this registration number."
+
+    def get_graduation_date(self, obj):
+        date_str = obj.registration_number.split("/")[3]
+        formatted_date = datetime.strptime(date_str, "%m%Y").date().strftime("%B, %Y")
+        return formatted_date

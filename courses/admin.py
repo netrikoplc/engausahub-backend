@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Enrollment
+from .models import Course, Enrollment, Graduate
 
 
 @admin.register(Course)
@@ -84,3 +84,9 @@ class EnrollmentAdmin(admin.ModelAdmin):
     )
     readonly_fields = ("enrolled_on",)
     ordering = ("-enrolled_on",)
+
+
+@admin.register(Graduate)
+class GraduateAdmin(admin.ModelAdmin):
+    list_display = ("names", "registration_number")
+    search_fields = ("names", "registration_number")

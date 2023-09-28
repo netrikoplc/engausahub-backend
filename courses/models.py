@@ -82,6 +82,8 @@ class Enrollment(models.Model):
     session = models.CharField(choices=SESSIONS, max_length=50, blank=False, null=False)
     learning_center = models.CharField(choices=LEARNING_CENTERS, max_length=50, blank=False, null=False)
     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True, related_name="enrollments")
+    graduate = models.BooleanField(default=False, blank=False, null=False)
+    registration_number = models.CharField(max_length=50, blank=True, null=True)
     paid = models.BooleanField(default=False, blank=False, null=False)
     scholarship = models.BooleanField(default=False, blank=False, null=False)
     enrolled_on = models.DateTimeField(default=timezone.now)
@@ -93,3 +95,32 @@ class Enrollment(models.Model):
         verbose_name = "enrollment"
         verbose_name_plural = "enrollments"
         unique_together = ("course_of_study", "student")
+
+
+class Graduate(models.Model):
+    GENDERS = (("male", "Male"), ("female", "Female"))
+
+    names = models.CharField(max_length=50, blank=True, null=True)
+    gender = models.CharField(max_length=6, blank=True, null=True)
+    date_of_birth = models.CharField(max_length=20, blank=True, null=True)
+
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    address = models.CharField(max_length=256, blank=True, null=True)
+
+    guardian_email = models.CharField(max_length=256, blank=True, null=True)
+    guardian_full_name = models.CharField(max_length=50, blank=True, null=True)
+    guardian_occupation = models.CharField(max_length=50, blank=True, null=True)
+    guardian_phone_number = models.CharField(max_length=20, blank=True, null=True)
+
+    primary_school = models.CharField(max_length=50, blank=True, null=True)
+    secondary_school = models.CharField(max_length=50, blank=True, null=True)
+
+    registration_number = models.CharField(max_length=50, blank=True, null=True)
+    session = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.names} - {self.registration_number}"
+
+    class Meta:
+        verbose_name = "graduate"
+        verbose_name_plural = "graduates"
