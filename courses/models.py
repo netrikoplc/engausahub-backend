@@ -110,7 +110,7 @@ class Graduate(models.Model):
     guardian_email = models.CharField(max_length=256, blank=True, null=True)
     guardian_full_name = models.CharField(max_length=50, blank=True, null=True)
     guardian_occupation = models.CharField(max_length=50, blank=True, null=True)
-    guardian_phone_number = models.CharField(max_length=20, blank=True, null=True)
+    guardian_phone = models.CharField(max_length=20, blank=True, null=True)
 
     primary_school = models.CharField(max_length=50, blank=True, null=True)
     secondary_school = models.CharField(max_length=50, blank=True, null=True)
