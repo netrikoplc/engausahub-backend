@@ -154,26 +154,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+STATIC_URL = "static/"
 
-# STATIC_URL = "static/"
-
-# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-
-STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
-# STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
 
 MEDIA_URL = "/engausahub/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "engausahub")
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 UPLOAD_ROOT = os.path.join(BASE_DIR, "engausahub", "uploads")
 
@@ -317,13 +312,13 @@ CKEDITOR_FILENAME_GENERATOR = "get_filename"
 
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 
-# CKEDITOR_CONFIGS = {
-#     "default": {
-#         "toolbar": [
-#             ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "CodeSnippet"],
-#             ["NumberedList", "BulletedList", "Outdent", "Indent"],
-#             ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
-#             ["Link", "Unlink", "Anchor"],
-#         ],
-#     }
-# }
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": [
+            ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "CodeSnippet"],
+            ["NumberedList", "BulletedList", "Outdent", "Indent"],
+            ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
+            ["Link", "Unlink", "Anchor"],
+        ],
+    }
+}
