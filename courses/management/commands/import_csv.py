@@ -1,4 +1,3 @@
-# myapp/management/commands/import_csv.py
 import csv
 from django.core.management.base import BaseCommand
 from courses.models import Graduate
@@ -16,4 +15,5 @@ class Command(BaseCommand):
         with open(csv_file, "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
-                Graduate.objects.create(**row)
+                if not Graduate.objects.filter(registration_number=row["registration_number"]).exists():
+                    Graduate.objects.create(**row)
