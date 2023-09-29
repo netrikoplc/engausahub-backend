@@ -80,11 +80,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -258,7 +258,7 @@ REST_AUTH = {
     "JWT_AUTH_HTTPONLY": True,
     "JWT_AUTH_SAMESITE": None,
     "PASSWORD_RESET_USE_SITES_DOMAIN": True,
-    "JWT_AUTH_COOKIE_USE_CSRF": False,
+    "JWT_AUTH_COOKIE_USE_CSRF": True,
     "JWT_AUTH_SECURE": DEBUG,
     "JWT_AUTH_COOKIE_ENFORCE_CSRF_ON_UNAUTHENTICATED": False,
     # serializers
@@ -271,9 +271,6 @@ REST_AUTH = {
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
 
 CORS_ALLOW_CREDENTIALS = env.bool("CORS_ALLOW_CREDENTIALS")
-
-CSRF_TRUSTED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
-
 
 # PHONE NUMBER SETTINGS
 PHONENUMBER_DB_FORMAT = "INTERNATIONAL"
