@@ -100,23 +100,23 @@ class Enrollment(models.Model):
 class Graduate(models.Model):
     GENDERS = (("male", "Male"), ("female", "Female"))
 
-    names = models.CharField(max_length=50, blank=True, null=True)
-    gender = models.CharField(max_length=20, blank=True, null=True)
-    date_of_birth = models.CharField(max_length=20, blank=True, null=True)
+    names = models.CharField(max_length=256, blank=True, null=True)
+    gender = models.CharField(max_length=256, blank=True, null=True)
+    date_of_birth = models.CharField(max_length=256, blank=True, null=True)
 
-    phone_number = models.CharField(max_length=50, blank=True, null=True)
+    phone_number = models.CharField(max_length=256, blank=True, null=True)
     address = models.CharField(max_length=256, blank=True, null=True)
 
     guardian_email = models.CharField(max_length=256, blank=True, null=True)
-    guardian_full_name = models.CharField(max_length=50, blank=True, null=True)
-    guardian_occupation = models.CharField(max_length=50, blank=True, null=True)
-    guardian_phone = models.CharField(max_length=50, blank=True, null=True)
+    guardian_full_name = models.CharField(max_length=256, blank=True, null=True)
+    guardian_occupation = models.CharField(max_length=256, blank=True, null=True)
+    guardian_phone = models.CharField(max_length=256, blank=True, null=True)
 
-    primary_school = models.CharField(max_length=50, blank=True, null=True)
-    secondary_school = models.CharField(max_length=50, blank=True, null=True)
+    primary_school = models.CharField(max_length=256, blank=True, null=True)
+    secondary_school = models.CharField(max_length=256, blank=True, null=True)
 
-    registration_number = models.CharField(max_length=50, blank=True, null=True)
-    session = models.CharField(max_length=50, blank=True, null=True)
+    registration_number = models.CharField(max_length=256, blank=True, null=True)
+    session = models.CharField(max_length=256, blank=True, null=True)
 
     def __str__(self):
         return f"{self.names} - {self.registration_number}"
