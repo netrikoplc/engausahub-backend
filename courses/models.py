@@ -101,10 +101,10 @@ class Graduate(models.Model):
     GENDERS = (("male", "Male"), ("female", "Female"))
 
     names = models.CharField(max_length=50, blank=True, null=True)
-    gender = models.CharField(max_length=6, blank=True, null=True)
+    gender = models.CharField(max_length=20, blank=True, null=True)
     date_of_birth = models.CharField(max_length=20, blank=True, null=True)
 
-    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    phone_number = models.CharField(max_length=50, blank=True, null=True)
     address = models.CharField(max_length=256, blank=True, null=True)
 
     guardian_email = models.CharField(max_length=256, blank=True, null=True)
