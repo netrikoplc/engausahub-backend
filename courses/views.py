@@ -46,10 +46,8 @@ class GraduateViewSet(GenericViewSet, RetrieveModelMixin):
     def retrieve(self, request, *args, **kwargs):
         registration_number = self.kwargs["registration_number"].replace("-", "/")
 
-        print(registration_number)
-
         try:
-            graduate = self.queryset.get(registration_number=registration_number)
+            graduate = self.queryset.get(registration_number=registration_number.upper())
         except Graduate.DoesNotExist:
             return Response("No graduate found", status=status.HTTP_404_NOT_FOUND)
 
