@@ -256,7 +256,7 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "engausahub-token",
     "USE_JWT": True,
     "JWT_AUTH_HTTPONLY": True,
-    "JWT_AUTH_SAMESITE": None,
+    "JWT_AUTH_SAMESITE": "None",
     "PASSWORD_RESET_USE_SITES_DOMAIN": True,
     "JWT_AUTH_COOKIE_USE_CSRF": False,
     "JWT_AUTH_SECURE": env.bool("JWT_AUTH_SECURE"),
