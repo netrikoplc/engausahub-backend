@@ -258,8 +258,8 @@ REST_AUTH = {
     "JWT_AUTH_HTTPONLY": True,
     "JWT_AUTH_SAMESITE": None,
     "PASSWORD_RESET_USE_SITES_DOMAIN": True,
-    "JWT_AUTH_COOKIE_USE_CSRF": True,
-    "JWT_AUTH_SECURE": DEBUG,
+    "JWT_AUTH_COOKIE_USE_CSRF": False,
+    "JWT_AUTH_SECURE": env.bool("JWT_AUTH_SECURE"),
     "JWT_AUTH_COOKIE_ENFORCE_CSRF_ON_UNAUTHENTICATED": False,
     # serializers
     "LOGIN_SERIALIZER": "accounts.serializers.CustomLoginSerializer",
