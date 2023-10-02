@@ -307,13 +307,13 @@ CKEDITOR_FILENAME_GENERATOR = "get_filename"
 
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 
-CKEDITOR_CONFIGS = {
-    "default": {
-        "toolbar": [
-            ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "CodeSnippet"],
-            ["NumberedList", "BulletedList", "Outdent", "Indent"],
-            ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
-            ["Link", "Unlink", "Anchor"],
-        ],
-    }
-}
+# CKEDITOR_CONFIGS = {
+#     "default": {
+#         "toolbar": [
+#             ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "CodeSnippet"],
+#             ["NumberedList", "BulletedList", "Outdent", "Indent"],
+#             ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
+#             ["Link", "Unlink", "Anchor"],
+#         ],
+#     }
+# }
