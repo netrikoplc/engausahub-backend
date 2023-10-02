@@ -265,6 +265,7 @@ REST_AUTH = {
     "LOGIN_SERIALIZER": "accounts.serializers.CustomLoginSerializer",
     "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
 }
+JWT_AUTH_COOKIE_DOMAIN = env.str("JWT_AUTH_COOKIE_DOMAIN")
 
 
 # CORSHEADERS SETTINGS

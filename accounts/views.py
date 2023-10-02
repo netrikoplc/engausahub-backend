@@ -5,7 +5,12 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.provider import GoogleProvider
 from allauth.socialaccount.providers.google import views as google_views
 from allauth.socialaccount.providers.oauth2.views import OAuth2Adapter
+from dj_rest_auth.views import LoginView
+from dj_rest_auth.app_settings import api_settings
 from django.conf import settings
+from django.utils import timezone
+from rest_framework.response import Response
+from rest_framework import status
 import jwt
 
 
@@ -46,3 +51,46 @@ class FacebookLogin(SocialLoginView):
     adapter_class = FacebookOAuth2Adapter
     callback_url = settings.FACEBOOK_OAUTH_CALLBACK_URL
     client_class = OAuth2Client
+
+
+class CustomLoginView(LoginView):
+    def get_response(self):
+        serializer_class = self.get_response_serializer()
+
+        if api_settings.USE_JWT:
+            from rest_framework_simplejwt.settings import (
+                api_settings as jwt_settings,
+            )
+
+            access_token_expiration = timezone.now() + jwt_settings.ACCESS_TOKEN_LIFETIME  # type: ignore
+            refresh_token_expiration = timezone.now() + jwt_settings.REFRESH_TOKEN_LIFETIME  # type: ignore
+            return_expiration_times = api_settings.JWT_AUTH_RETURN_EXPIRATION
+            auth_httponly = api_settings.JWT_AUTH_HTTPONLY
+
+            data = {
+                "user": self.user,
+                "access": self.access_token,
+            }
+
+            if not auth_httponly:
+                data["refresh"] = self.refresh_token
+            else:
+                # Wasnt sure if the serializer needed this
+                data["refresh"] = ""
+
+            if return_expiration_times:
+                data["access_expiration"] = access_token_expiration
+                data["refresh_expiration"] = refresh_token_expiration
+
+            serializer = serializer_class(instance=data, context=self.get_serializer_context())  # type: ignore
+        elif self.token:
+            serializer = serializer_class(instance=self.token, context=self.get_serializer_context())  # type: ignore
+        else:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        response = Response(serializer.data, status=status.HTTP_200_OK)
+        if api_settings.USE_JWT:
+            from .jwt_auth import set_jwt_cookies
+
+            set_jwt_cookies(response, self.access_token, self.refresh_token)
+        return response
