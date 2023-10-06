@@ -293,6 +293,8 @@ PAYSTACK_SECRET_KEY = env.str("PAYSTACK_SECRET_KEY")
 # ckeditor settings
 CKEDITOR_UPLOAD_PATH = "uploads/ckeditor/"
 
+CKEDITOR_BASEPATH = env.str("CKEDITOR_BASEPATH")
+
 CKEDITOR_FILENAME_GENERATOR = "core.utils.get_filename"
 
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
