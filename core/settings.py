@@ -290,30 +290,11 @@ CLOUDINARY_STORAGE = {
 
 PAYSTACK_SECRET_KEY = env.str("PAYSTACK_SECRET_KEY")
 
-
-import uuid
-
-
-def get_filename(filename):
-    name, ext = filename.split(".")
-
-    return f"{name}-{uuid.uuid4()[5]}.{ext}"
-
-
 # ckeditor settings
 CKEDITOR_UPLOAD_PATH = "uploads/ckeditor/"
 
-CKEDITOR_FILENAME_GENERATOR = "get_filename"
+CKEDITOR_FILENAME_GENERATOR = "core.utils.get_filename"
 
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 
-# CKEDITOR_CONFIGS = {
-#     "default": {
-#         "toolbar": [
-#             ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "CodeSnippet"],
-#             ["NumberedList", "BulletedList", "Outdent", "Indent"],
-#             ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"],
-#             ["Link", "Unlink", "Anchor"],
-#         ],
-#     }
-# }
+CKEDITOR_CONFIGS = {"default": {"toolbar": "full", "width": 1000, "height": 600}}
