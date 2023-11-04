@@ -9,4 +9,5 @@ urlpatterns = [
     path("registration/", include("dj_rest_auth.registration.urls")),
     path("login/new/", CustomLoginView.as_view(), name="login_view"),
     path("logout/new/", CustomLogoutView.as_view(), name="logout_view"),
+    path("", include("allauth.urls"), name="socialaccount_signup"),
 ]

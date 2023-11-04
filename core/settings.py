@@ -253,7 +253,7 @@ SIMPLE_JWT = {
 
 # DJ REST AUTH SETTINGS
 REST_AUTH = {
-    "JWT_AUTH_COOKIE": "engausahub-token",
+    "JWT_AUTH_COOKIE": "engausahub_token",
     "USE_JWT": True,
     "JWT_AUTH_HTTPONLY": True,
     "JWT_AUTH_SAMESITE": "None",
