@@ -300,3 +300,14 @@ CKEDITOR_FILENAME_GENERATOR = "core.utils.get_filename"
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 
 CKEDITOR_CONFIGS = {"default": {"toolbar": "full", "width": 1000, "height": 600}}
+
+
+# sentry settings
+if not DEBUG:
+    import sentry_sdk
+
+    sentry_sdk.init(
+        dsn=env.str("SENTRY_DSN"),
+        traces_sample_rate=1.0,
+        profiles_sample_rate=1.0,
+    )
